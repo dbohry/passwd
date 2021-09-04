@@ -2,7 +2,9 @@ plugins {
     id 'org.springframework.boot' version '2.5.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'groovy'
 }
+
 
 group = 'com.danielbohry'
 version = '0.0.1-SNAPSHOT'
@@ -15,8 +17,14 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:2.5.4'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
+    implementation 'org.codehaus.groovy:groovy:3.0.8'
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
+    testImplementation('org.spockframework:spock-core:2.0-groovy-3.0')
+    testImplementation('org.spockframework:spock-spring:2.0-groovy-3.0')
+    testImplementation('org.springframework.boot:spring-boot-starter-test:2.5.4') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation('io.rest-assured:rest-assured:4.4.0')
 }
 
 test {
